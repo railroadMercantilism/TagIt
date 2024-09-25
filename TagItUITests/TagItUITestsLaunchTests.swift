@@ -2,7 +2,7 @@
 //  TagItUITestsLaunchTests.swift
 //  TagItUITests
 //
-//  Created by James Barry on 9/18/24.
+//  Created by James Barry and His great teamates/fellow content minions/farmers Maria and Liam
 //
 
 import XCTest
