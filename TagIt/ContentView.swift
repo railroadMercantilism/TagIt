@@ -41,7 +41,7 @@ struct ContentView: View {
                 }
             }
         } detail: {
-            Text("Select an item")
+            Text("Drag files or folders to add")
         }
     }
 
