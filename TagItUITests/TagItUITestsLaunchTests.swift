@@ -2,7 +2,7 @@
 //  TagItUITestsLaunchTests.swift
 //  TagItUITests
 //
-//  Created by James Barry and His great teamates/fellow content minions/farmers Maria and Liam
+//  Created by James Barry and his great teamates/fellow content minions/farmers Maria and Liam
 //
 
 import XCTest
