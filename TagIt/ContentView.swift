@@ -3,7 +3,7 @@
 //  TagIt
 //
 //  Created by James Barry on 9/18/24.
-//MARIA IS THE BEST
+//MARIA IS THE BEST in hell
 
 import SwiftUI
 import SwiftData
