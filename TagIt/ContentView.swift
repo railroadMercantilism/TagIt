@@ -3,16 +3,16 @@
 //  TagIt
 //
 //  Created by James Barry on 9/18/24.
-//  MARIA IS THE BEST
-//MARIA IS THE BEST in hell
 
 import SwiftUI
 import SwiftData
+import Foundation
 
 struct ContentView: View {
+    // PLEASE COMMENT THE CODE AS YOU BEGIN TO UNDERSTAND IT
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
-
+    
     var body: some View {
         NavigationSplitView {
             List {
@@ -44,14 +44,14 @@ struct ContentView: View {
             Text("Select an item")
         }
     }
-
+    
     private func addItem() {
         withAnimation {
             let newItem = Item(timestamp: Date())
             modelContext.insert(newItem)
         }
     }
-
+    
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
