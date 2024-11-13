@@ -9,18 +9,18 @@ import SwiftData
 import Foundation
 
 struct ContentView: View {
-    // PLEASE COMMENT THE CODE AS YOU BEGIN TO UNDERSTAND IT
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
+    @Query private var tags: [Tag]
     
     var body: some View {
         NavigationSplitView {
             List {
-                ForEach(items) { item in
+                ForEach(tags) { tag in
                     NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
+                        Text("Tag of \(tag.name))")
                     } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+                        Text("Tag of \(tag.name))")
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -35,9 +35,15 @@ struct ContentView: View {
                 }
 #endif
                 ToolbarItem {
+                    /*
                     Button(action: addItem) {
                         Label("Add Item", systemImage: "plus")
                     }
+                    */
+                    Button(action: addTag) {
+                        Label("Add Tag", systemImage: "plus")
+                    }
+
                 }
             }
         } detail: {
@@ -45,12 +51,27 @@ struct ContentView: View {
         }
     }
     
+    /*
     private func addItem() {
         withAnimation {
             let newItem = Item(timestamp: Date())
             modelContext.insert(newItem)
         }
     }
+    */
+    
+    private func addTag() {
+        withAnimation{
+            print("Please enter your name:")
+
+            let name = input()
+
+            print("\(name)")
+            let newTag = Tag(name: name)
+            modelContext.insert(newTag)
+        }
+    }
+    
     
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
@@ -58,6 +79,13 @@ struct ContentView: View {
                 modelContext.delete(items[index])
             }
         }
+    }
+    
+    func input() -> String {
+        let keyboard = FileHandle.standardInput
+        let inputData = keyboard.availableData
+
+        return NSString(data: inputData, encoding: String.Encoding.utf8.rawValue)! as String
     }
 }
 
