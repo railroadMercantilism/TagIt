@@ -10,7 +10,6 @@ import Foundation
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
     @Query private var tags: [Tag]
     
     var body: some View {
@@ -47,36 +46,50 @@ struct ContentView: View {
                 }
             }
         } detail: {
-            Text("Select an item")
+            Text("Select a Tag")
         }
-    }
     
-    /*
+    
+    
     private func addItem() {
         withAnimation {
-            let newItem = Item(timestamp: Date())
+            var selectedContainerTags: [String]
+
+            ForEach(tags, id: \.self) {
+                Text($0)
+            }
+            
+            let newItem = Item(name: name)
             modelContext.insert(newItem)
         }
     }
-    */
+    
     
     private func addTag() {
         withAnimation{
-            print("Please enter your name:")
-
+            var selectedChildTags: [String]
+            var selectedParentTags: [String]
+            
             let name = input()
-
-            print("\(name)")
-            let newTag = Tag(name: name)
+            ForEach(tags, id: \.self) {
+                Text($0)
+            }
+            ForEach(tags, id: \.self) {
+                Text($0)
+            }
+                    
+            let newTag = Tag(name: name, selectedChildTags, selectedParentTags)
             modelContext.insert(newTag)
+                
+            }
         }
-    }
+    
     
     
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
-                modelContext.delete(items[index])
+                modelContext.delete(tags[index])
             }
         }
     }
@@ -93,3 +106,4 @@ struct ContentView: View {
     ContentView()
         .modelContainer(for: Item.self, inMemory: true)
 }
+
