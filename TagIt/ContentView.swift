@@ -1,9 +1,3 @@
-//
-//  ContentView.swift
-//  TagIt
-//
-//  Created by James Barry on 9/18/24.
-
 import SwiftUI
 import SwiftData
 import Foundation
@@ -17,76 +11,44 @@ struct ContentView: View {
             List {
                 ForEach(tags) { tag in
                     NavigationLink {
-                        Text("Tag of \(tag.name))")
+                        Text("Tag of \(tag.tagName)")
                     } label: {
-                        Text("Tag of \(tag.name))")
+                        Text("Tag of \(tag.tagName)")
                     }
                 }
-                .onDelete(perform: deleteItems)
+                .onDelete(perform: deleteTag)
             }
-#if os(macOS)
             .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-#endif
             .toolbar {
-#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-#endif
                 ToolbarItem {
-                    /*
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                    */
                     Button(action: addTag) {
                         Label("Add Tag", systemImage: "plus")
                     }
-
                 }
             }
         } detail: {
             Text("Select a Tag")
         }
+    }
     
-    
-    
-    private func addItem() {
+    // Function to add a new tag
+    private func addTag() {
         withAnimation {
-            var selectedContainerTags: [String]
-
-            ForEach(tags, id: \.self) {
-                Text($0)
-            }
+            let name = input()  // Assuming this function gets a string input correctly
             
-            let newItem = Item(name: name)
-            modelContext.insert(newItem)
+            // Empty arrays for child and parent tags, or use actual selections
+            let selectedChildTags: [String] = []
+            let selectedParentTags: [String] = []
+            
+            // Assuming Tag has an initializer that accepts these parameters
+            let newTag = Tag(tagName: name, children: selectedChildTags, parents: selectedParentTags)
+            
+            modelContext.insert(newTag)
         }
     }
     
-    
-    private func addTag() {
-        withAnimation{
-            var selectedChildTags: [String]
-            var selectedParentTags: [String]
-            
-            let name = input()
-            ForEach(tags, id: \.self) {
-                Text($0)
-            }
-            ForEach(tags, id: \.self) {
-                Text($0)
-            }
-                    
-            let newTag = Tag(name: name, selectedChildTags, selectedParentTags)
-            modelContext.insert(newTag)
-                
-            }
-        }
-    
-    
-    
-    private func deleteItems(offsets: IndexSet) {
+    // Function to delete a tag
+    private func deleteTag(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
                 modelContext.delete(tags[index])
@@ -94,10 +56,11 @@ struct ContentView: View {
         }
     }
     
-    func input() -> String {
+    // Function to handle user input
+    private func input() -> String {
         let keyboard = FileHandle.standardInput
         let inputData = keyboard.availableData
-
+        
         return NSString(data: inputData, encoding: String.Encoding.utf8.rawValue)! as String
     }
 }
@@ -106,4 +69,3 @@ struct ContentView: View {
     ContentView()
         .modelContainer(for: Item.self, inMemory: true)
 }
-

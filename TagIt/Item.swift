@@ -2,7 +2,7 @@
 //  Item.swift
 //  TagIt
 //
-//  Created by James Barry on 9/18/24.
+//  Created by James Barry on 12/3/24.
 //
 
 import Foundation
@@ -10,11 +10,9 @@ import SwiftData
 
 @Model
 final class Item {
-    var name: String
-    var tags: [String]
+    var timestamp: Date
     
-    init(name: String, tags: [String]) {
-        self.name = name
-        self.tags = tags
+    init(timestamp: Date) {
+        self.timestamp = timestamp
     }
 }

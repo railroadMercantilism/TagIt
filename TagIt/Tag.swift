@@ -10,16 +10,17 @@ import SwiftData
 
 @Model
 final class Tag {
-    var name: String
+    var tagName: String
     var children: [String]
     var parents: [String]
     var population: [String]
     
     
-    init(name: String, children: [String], parents: [String]) {
-        self.name = name;
+    init(tagName: String, children: [String], parents: [String]) {
+        self.tagName = tagName;
         self.children = children;
         self.parents = parents;
+        self.population = []
     }
     
     func setParent (tempParent: String) {
@@ -41,26 +42,4 @@ final class Tag {
 }
 
 
-/**
- @Model
- final class Tag {
- var name: String;
- var children:[String];
- var parent:[String];
- 
- init(name: String) {
- self.name = name
- children = []
- parent = []
- }
- 
- func setParent (tempParent: String) {
- 
- }
- 
- func setChild (tempChild: String) {
- 
- }
- 
- }
- */
+
