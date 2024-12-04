@@ -2,17 +2,31 @@
 //  Item.swift
 //  TagIt
 //
-//  Created by James Barry on 9/18/24.
+//  Created by James Barry on 12/3/24.
 //
 
+import AppKit
 import Foundation
 import SwiftData
 
 @Model
 final class Item {
-    var timestamp: Date
+    @Attribute(.unique) var id: UUID
+    var tags: [Tag]
+    var fileURL: String?
     
-    init(timestamp: Date) {
-        self.timestamp = timestamp
+    init(fileURL: String) {
+        self.id = UUID()
+        self.fileURL = fileURL
+        self.tags = []
+    }
+    
+    var fileURLObject: URL? {
+            guard let fileURL = fileURL else { return nil }
+            return URL(fileURLWithPath: fileURL)
+    }
+    
+    func addTag(tag: Tag) {
+        tags.append(tag)
     }
 }
