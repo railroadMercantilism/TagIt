@@ -20,6 +20,7 @@ struct TagItApp: App {
     func startUp() {
         let folderName = ".TagIt" // Change this to your desired folder name
         let fileManager = FileManager.default
+
             
         // Get the documents directory path
         guard let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
@@ -53,6 +54,12 @@ struct TagItApp: App {
         ])
         
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+        
+        let urlApp = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).last
+               let url = urlApp!.appendingPathComponent("default.store")
+               if FileManager.default.fileExists(atPath: url.path) {
+                   print("swiftdata db at \(url.absoluteString)")
+        }
 
         do {
             return try ModelContainer(for: schema, configurations: [modelConfiguration])

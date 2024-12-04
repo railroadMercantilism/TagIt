@@ -1,12 +1,27 @@
+//
+//  Tag.swift
+//  TagIt
+//
+//  Created by James Barry on 11/13/24.
+//
+
 import Foundation
 import SwiftData
 
 @Model
 final class Tag {
+    @Attribute(.unique) var id: UUID
     var tagName: String
+    var children: [String]
+    var parents: [String]
+    @Relationship(inverse: \Item.tags) var population: [String]
     
     init(tagName: String) {
-        self.tagName = ""
+        self.id = UUID()
+        self.tagName = tagName
+        self.children = []
+        self.parents = []
+        self.population = []
     }
 }
 
