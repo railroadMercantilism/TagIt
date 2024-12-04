@@ -1,3 +1,18 @@
+import Foundation
+import SwiftData
+
+@Model
+final class Tag {
+    var tagName: String
+    
+    init(tagName: String) {
+        self.tagName = ""
+    }
+}
+
+
+
+/*
 //
 //  Tag.swift
 //  TagIt
@@ -11,18 +26,23 @@ import SwiftData
 @Model
 final class Tag {
     var tagName: String
+    /*
     var children: [String]
     var parents: [String]
     var population: [String]
-    
-    
-    init(tagName: String, children: [String], parents: [String]) {
-        self.tagName = tagName;
-        self.children = children;
-        self.parents = parents;
-        self.population = []
+     */
+
+    init(tagName: String /*, children: [String], parents: [String]*/) {
+        self.tagName = tagName
+        /*
+        self.children = children
+        self.parents = parents
+        self.population = []  // Initialize population with an empty array
+         */
     }
-    
+
+
+    /*
     func setParent (tempParent: String) {
         parents.append(tempParent)
     }
@@ -39,7 +59,8 @@ final class Tag {
     func checkPopulation() -> [String] {
         return population;
     }
+     */
 }
 
-
+*/
 

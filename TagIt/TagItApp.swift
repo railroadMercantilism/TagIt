@@ -49,6 +49,7 @@ struct TagItApp: App {
         
         let schema = Schema([
             Item.self,
+            Tag.self,
         ])
         
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)

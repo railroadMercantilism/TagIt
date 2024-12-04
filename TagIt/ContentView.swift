@@ -3,8 +3,11 @@ import SwiftData
 import Foundation
 
 struct ContentView: View {
+    
     @Environment(\.modelContext) private var modelContext
     @Query private var tags: [Tag]
+    
+    @State private var newTagName: String = ""
     
     var body: some View {
         NavigationSplitView {
@@ -25,6 +28,11 @@ struct ContentView: View {
                         Label("Add Tag", systemImage: "plus")
                     }
                 }
+                ToolbarItem {
+                    TextField("Prospective Tag Name", text: $newTagName)  
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
+                }
             }
         } detail: {
             Text("Select a Tag")
@@ -33,17 +41,15 @@ struct ContentView: View {
     
     // Function to add a new tag
     private func addTag() {
+        guard !newTagName.isEmpty else { return }
         withAnimation {
-            let name = input()  // Assuming this function gets a string input correctly
+            let newTag = Tag(tagName: newTagName)
             
-            // Empty arrays for child and parent tags, or use actual selections
-            let selectedChildTags: [String] = []
-            let selectedParentTags: [String] = []
-            
-            // Assuming Tag has an initializer that accepts these parameters
-            let newTag = Tag(tagName: name, children: selectedChildTags, parents: selectedParentTags)
-            
+            // Insert the new tag into the model context
             modelContext.insert(newTag)
+            
+            // Clear the input field after adding
+            newTagName = ""
         }
     }
     
@@ -67,5 +73,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+        .modelContainer(for: Tag.self, inMemory: true)
 }
