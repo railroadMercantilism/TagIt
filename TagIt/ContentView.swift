@@ -51,15 +51,19 @@ struct ContentView: View {
                     }
                 }
             }
-            
         } detail: {
+            Text("Select a Tag")
+        }
+        /*
+         } detail: {
+            
             if let selectedTag = selectedTag {
                 VStack {
                     Text("Items in \(selectedTag.tagName)")
                         .font(.headline)
                     
                     List {
-                        ForEach(selectedTag.items) { item in
+                        ForEach(selectedTag.population.items) { item in
                             Text("Item: \(item.fileURL ?? "No file")")
                         }
                     }
@@ -78,6 +82,7 @@ struct ContentView: View {
                 Text("Select a Tag to view and add items.")
             }
         }
+         */
     }
     
     // Function to add a new tag
@@ -123,7 +128,7 @@ struct ContentView: View {
             return nil
         }
     }
-
+    /*
     // Add an item to the selected tag
     private func addItemToTag(tag: Tag) {
         guard !newItemFileName.isEmpty else { return }
@@ -139,6 +144,7 @@ struct ContentView: View {
             newItemFileName = ""  // Clear the file name input
         }
     }
+     */
 }
 
 #Preview {
