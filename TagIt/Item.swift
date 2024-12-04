@@ -26,4 +26,7 @@ final class Item {
             return URL(fileURLWithPath: fileURL)
     }
     
+    func addTag(tag: Tag) {
+        tags.append(tag)
+    }
 }

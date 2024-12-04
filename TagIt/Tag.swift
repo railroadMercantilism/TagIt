@@ -12,9 +12,9 @@ import SwiftData
 final class Tag {
     @Attribute(.unique) var id: UUID
     var tagName: String
-    var children: [String]
-    var parents: [String]
-    @Relationship(inverse: \Item.tags) var population: [String]
+    var children: [Tag]
+    var parents: [Tag]
+    @Relationship(inverse: \Item.tags) var population: [Item]
     
     init(tagName: String) {
         self.id = UUID()
