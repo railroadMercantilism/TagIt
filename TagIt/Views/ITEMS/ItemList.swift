@@ -16,7 +16,7 @@ struct ItemList: View {
         NavigationSplitView {
 
         } detail: {
-            Text("Select a Tag to gain a group of Items")
+            Text("Drag files and folders to add")
         }
     }
 }

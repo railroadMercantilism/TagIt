@@ -13,11 +13,8 @@ struct TagList: View {
     @Query private var tags: [Tag]
 
     var body: some View {
-        NavigationSplitView {
-
-        } detail: {
-            Text("Tag(s)")
-        }
+            Text("Tags")
+            .frame(minWidth: 200, minHeight: 100, idealHeight: 600, maxHeight: .infinity)
     }
 }
 
