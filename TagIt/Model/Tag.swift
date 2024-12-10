@@ -37,6 +37,8 @@ final class Tag {
     init(tagName: String) {
         self.id = UUID()
         self.tagName = tagName
+        //self.color
+        //self.icon
         self.children = []
         self.parents = []
         self.population = []
