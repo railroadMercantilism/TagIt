@@ -8,28 +8,27 @@ struct ContentView: View {
     var body: some View {
         NavigationSplitView {
             TagList()
-                .toolbar {
-                    ToolbarItem(placement: .navigation) {
-                        Button(action: {
-                            print("Left plus button clicked")
-                        }) {
-                            Label("Add", systemImage: "plus")
-                        }
-                    }
-                }
         } detail: {
+            //ItemList()
             Text("Files")
         }
         .frame(minWidth: 700, minHeight: 300)
         .toolbar {
-            ToolbarItemGroup(placement: .confirmationAction) {
+            ToolbarItem(placement: .navigation) {
+                Text("Tag Filters:")
+                    .font(.title3)
+                    .fontWeight(.semibold)
+            }
+            ToolbarItem(placement: .confirmationAction) {
                 Button(action: {
                     print("Add button clicked")
                 }) {
-                    Label("Add", systemImage: "plus")
+                    Label("Add Filter", systemImage: "plus")
                 }
             }
         }
+        .navigationTitle("")
+        
     }
 }
 

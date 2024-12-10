@@ -13,8 +13,26 @@ struct TagList: View {
     @Query private var tags: [Tag]
 
     var body: some View {
-            Text("Tags")
-            .frame(minWidth: 200, minHeight: 100, idealHeight: 600, maxHeight: .infinity)
+        VStack(alignment: .leading, spacing: 20) {
+            Text("TagIt")
+                .font(.largeTitle)
+                .bold()
+            
+            TagListItem()
+            
+            Spacer()
+        }
+        .padding(.leading, 20)
+        .frame(minWidth: 200, minHeight: 100, idealHeight: 600, maxHeight: .infinity)
+        .toolbar {
+            ToolbarItem() {
+                Button(action: {
+                    print("Add button clicked")
+                }) {
+                    Label("New Tag", systemImage: "plus")
+                }
+            }
+        }
     }
 }
 
