@@ -6,10 +6,12 @@
 //
 import Foundation
 import SwiftData
+import SwiftUI
+
 
 /*
  Because of @Model; This is the Tag TABLE. Image each of these variables as a columns in a table in a database.
- */
+*/
 @Model
 final class Tag {
     // These are the 'columns' in the table, alongside their types. {
@@ -19,6 +21,10 @@ final class Tag {
     
     // This is the name of the tag
     var tagName: String
+    
+    var tagColor: String
+    
+    var tagIcon: String
     
     // List of Parent Tags
     public var parents: [Tag]?
@@ -34,15 +40,75 @@ final class Tag {
     // }
     
     // INITALIZE EACH TAG {
-    init(tagName: String) {
+    init(tagName: String, tagColor: String, tagIcon: String) {
         self.id = UUID()
         self.tagName = tagName
-        //self.color
-        //self.icon
+        self.tagColor = tagColor
+        self.tagIcon = tagIcon
         self.children = []
         self.parents = []
         self.population = []
     }
     // }
+    
+    // ADD A CHILD TAG {
+    func addChildTag(tag: Tag) {
+        children?.append(tag)
+    }
+    // }
+    
+    // ADD A PARENT TAG {
+    func addParentTag(tag: Tag) {
+        parents?.append(tag)
+    }
+    // }
+    
+    // Change the color of the tag
+    func changeColor(color: String) {
+        self.tagColor = color
+    }
+    
+    func changeIcon(icon: String) {
+        self.tagIcon = icon
+    }
+    
+    func changeColor(color: Color) {
+        self.tagColor = colorToHex(color)
+    }
+    
+    func colorToHex(_ color: Color) -> String {
+        guard let components: [CGFloat] = color.cgColor?.components else { return "#FFFFFFFF" }
+        
+        if(components.count == 2) {
+            return String(format: "#%02lX%02lX%02lX", lroundf(Float(components[0]) * 255.0), lroundf(Float(components[0]) * 255.0), lroundf(Float(components[0]) * 255.0))
+        }
+        return String(format: "#%02lX%02lX%02lX%02lX", lroundf(Float(components[0]) * 255.0), lroundf(Float(components[1]) * 255.0), lroundf(Float(components[2]) * 255.0), lroundf(Float(components[3]) * 255.0))
+    }
+}
+
+extension Color {
+    public init(fromHex: String) {
+
+
+        let _colorSpace: Color.RGBColorSpace = .sRGB
+        let r, g, b: CGFloat
+        let start = fromHex.index(fromHex.startIndex, offsetBy: 1)
+        let hexColor = String(fromHex[start...])
+
+        if(hexColor.count == 6) {
+            let scanner = Scanner(string: hexColor)
+            var hexNumber: UInt64 = 0
+
+            if(scanner.scanHexInt64(&hexNumber)) {
+                r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
+                g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
+                b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
+                
+                self.init(_colorSpace, red: r, green: g, blue: b)
+                return
+            }
+        }
+        self.init(_colorSpace, red: 256, green: 256, blue: 256)
+    }
 }
 

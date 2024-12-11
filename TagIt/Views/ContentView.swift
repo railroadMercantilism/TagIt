@@ -9,7 +9,7 @@ struct ContentView: View {
         NavigationSplitView {
             TagList()
         } detail: {
-            //ItemList()
+            ItemList()
             Text("Files")
         }
         .frame(minWidth: 700, minHeight: 300)

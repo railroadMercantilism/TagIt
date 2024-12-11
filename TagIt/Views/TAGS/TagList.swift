@@ -10,11 +10,14 @@ import SwiftUI
 import SwiftData
 
 struct TagList: View {
-    //@Query private var tags: [Tag]
+    @Query private var tags: [Tag]
     
-    //This is a temporary String with dummy data
-    @State private var numberOfTags = 2
-
+    var tagList: [Tag] = [
+        Tag(tagName: "Work", tagColor: "#FF0000", tagIcon: "briefcase.fill"),
+        Tag(tagName: "Personal", tagColor: "#00FF00", tagIcon: "person.fill"),
+        Tag(tagName: "School", tagColor: "#0000FF", tagIcon: "graduationcap.fill"),
+    ]
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 15) {
@@ -23,11 +26,8 @@ struct TagList: View {
                     .bold()
                     .padding(.bottom, 10)
                 
-                //Given range will need to be total number of tags
-                ForEach(0..<numberOfTags, id: \.self) { _ in
-                    label: do {
-                        TagListItem()
-                    }
+                ForEach (tagList) { tag in
+                    TagListItem(tag: tag)
                 }
                 
                 Spacer()
@@ -37,9 +37,9 @@ struct TagList: View {
             .toolbar {
                 ToolbarItem() {
                     Button(action: {
-                        numberOfTags += 1
+                        print("Add button clicked")
                     }) {
-                        Label("New Tag", systemImage: "plus")
+                        Label("Add Filter", systemImage: "plus")
                     }
                 }
             }
@@ -49,6 +49,5 @@ struct TagList: View {
 
 #Preview {
     TagList()
-        //.environment(ModelData())
 }
 

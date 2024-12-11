@@ -15,28 +15,24 @@ import SwiftData
 @Model
 final class Item {
     
-    // These are the 'columns' in the table, alongside their types. {
-    
     // @Attribute(.unique) means each UUID is unique
     @Attribute(.unique) var id: UUID
     
+    var itemName: String
     var tags: [Tag]
-    var fileURL: String?
-    // }
+    var fileURL: URL
+
     
-    // INITALIZE EACH ITEM {
-    init(fileURL: String) {
+    init(fileURL: URL) {
         self.id = UUID()
         self.fileURL = fileURL
+        self.itemName = fileURL.lastPathComponent
         self.tags = []
     }
-    // }
-    
     
     /*
      Possible future implementation: show the fileURL as a URL object and then show file details/preview in the app.
-     */
-    
+    */
     func addTag(tag: Tag) {
         tags.append(tag)
     }

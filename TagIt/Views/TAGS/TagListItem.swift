@@ -6,26 +6,26 @@
 //
 
 import SwiftUI
+import SwiftData
 
 //This will eventually be superseded by the Tag() class once it is working
 struct TempTag {
     let name: String
-    let color: Color
+    let color: String
     let icon: String
+    
 }
 
 struct TagListItem: View {
-    
-    //snippet below temporary, will need to instead pull data from Tag()
-    var tag = TempTag(name: "Example Tag", color: .blue, icon: "tag.fill")
+    var tag: Tag
     
     var body: some View {
         HStack {
-            Image(systemName: tag.icon)
-                .foregroundStyle(tag.color)
+            Image(systemName: tag.tagIcon)
+                .foregroundStyle(Color(fromHex: tag.tagColor))
                 .fontWeight(.bold)
             
-            Text(tag.name)
+            Text(tag.tagName)
                 .font(.title3)
             
             Spacer()
@@ -35,5 +35,5 @@ struct TagListItem: View {
 }
 
 #Preview {
-    TagListItem()
+
 }
