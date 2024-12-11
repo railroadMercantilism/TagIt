@@ -11,13 +11,13 @@ import SwiftData
 
 struct ItemList: View {
     @Query private var items: [Item]
-    
+    /*
     var item: [Item] = [
         Item(itemName: "Work", ),
         Item(itemName: "Personal", itemColor: "#00FF00", itemIcon: "person.fill"),
         Item(itemName: "School", itemColor: "#0000FF", itemIcon: "graduationcap.fill"),
         ]
-
+     */
     var body: some View {
         VStack {
             Text("Drag files and folders to add")

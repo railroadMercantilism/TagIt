@@ -20,13 +20,13 @@ final class Item {
     
     var itemName: String
     var tags: [Tag]
-    var fileURL: URL
+    var fileURL: String
 
     
-    init(fileURL: URL) {
+    init(fileURL: String) {
         self.id = UUID()
         self.fileURL = fileURL
-        self.itemName = fileURL.lastPathComponent
+        self.itemName = ""
         self.tags = []
     }
     

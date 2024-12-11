@@ -11,6 +11,7 @@ import SwiftData
 
 struct TagList: View {
     @Query private var tags: [Tag]
+    @State private var showTagCreateView = false
     
     var tagList: [Tag] = [
         Tag(tagName: "Work", tagColor: "#FF0000", tagIcon: "briefcase.fill"),
