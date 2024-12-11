@@ -6,10 +6,10 @@
 ////
 
 import SwiftUI
+import SwiftData
 
 struct FilterView: View {
-    
-    @State private var numberOfTags = 4
+    @Query private var tags: [Tag]
     
     var body: some View {
         HStack {
@@ -18,13 +18,13 @@ struct FilterView: View {
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Menu {
-                    ForEach(0..<numberOfTags, id: \.self) { index in
+                    ForEach(tags) { tag in
                         Button(action: {
-                            print("Filter Option \(index + 1) selected")
+                            print(tag.tagName + " filter selected")
                         }, label: {
                             HStack {
-                                Text("Example Tag \(index + 1)")
-                                Image(systemName: "tag.fill") // Example icon, change as needed
+                                Text(tag.tagName)
+                                Image(systemName: tag.tagIcon)
                                     .foregroundStyle(.red)
                                     .fontWeight(.bold)
                             }

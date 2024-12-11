@@ -40,10 +40,10 @@ final class Tag {
     // }
     
     // INITALIZE EACH TAG {
-    init(tagName: String, tagColor: String, tagIcon: String) {
+    init(tagName: String, tagIcon: String) {
         self.id = UUID()
         self.tagName = tagName
-        self.tagColor = tagColor
+        self.tagColor = "#0000FF"
         self.tagIcon = tagIcon
         self.children = []
         self.parents = []
@@ -77,12 +77,12 @@ final class Tag {
     }
     
     func colorToHex(_ color: Color) -> String {
-        guard let components: [CGFloat] = color.cgColor?.components else { return "#FFFFFFFF" }
+        guard let components: [CGFloat] = color.cgColor?.components else { return "#FFFFFF" }
         
         if(components.count == 2) {
             return String(format: "#%02lX%02lX%02lX", lroundf(Float(components[0]) * 255.0), lroundf(Float(components[0]) * 255.0), lroundf(Float(components[0]) * 255.0))
         }
-        return String(format: "#%02lX%02lX%02lX%02lX", lroundf(Float(components[0]) * 255.0), lroundf(Float(components[1]) * 255.0), lroundf(Float(components[2]) * 255.0), lroundf(Float(components[3]) * 255.0))
+        return String(format: "#%02lX%02lX%02lX%", lroundf(Float(components[0]) * 255.0), lroundf(Float(components[1]) * 255.0), lroundf(Float(components[2]) * 255.0))
     }
 }
 

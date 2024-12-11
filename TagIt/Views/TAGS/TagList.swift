@@ -13,11 +13,11 @@ struct TagList: View {
     @Query private var tags: [Tag]
     @State private var showTagCreateView = false
     
-    var tagList: [Tag] = [
-        Tag(tagName: "Work", tagColor: "#FF0000", tagIcon: "briefcase.fill"),
-        Tag(tagName: "Personal", tagColor: "#00FF00", tagIcon: "person.fill"),
-        Tag(tagName: "School", tagColor: "#0000FF", tagIcon: "graduationcap.fill"),
-    ]
+//    var tagList: [Tag] = [
+//        Tag(tagName: "Work", tagIcon: "briefcase.fill"),
+//        Tag(tagName: "Personal", tagIcon: "person.fill"),
+//        Tag(tagName: "School", tagIcon: "graduationcap.fill"),
+//    ]
     
     var body: some View {
         ScrollView {
@@ -27,7 +27,7 @@ struct TagList: View {
                     .bold()
                     .padding(.bottom, 10)
                 
-                ForEach (tagList) { tag in
+                ForEach (tags) { tag in
                     TagListItem(tag: tag)
                 }
                 
@@ -52,6 +52,6 @@ struct TagList: View {
 }
 
 #Preview {
-    TagList()
+    //TagList()
 }
 

@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct TagCreateView: View {
+    @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) var dismiss
     
     @State private var tagName: String = ""
@@ -74,8 +75,14 @@ struct TagCreateView: View {
                 
                 Button (
                     action: {
-                        //temporary
+                        let tempTag = Tag(tagName: tagName, tagIcon: selectedIcon)
+                        print(tempTag.tagName)
+                        print(tempTag.tagIcon)
+                        tempTag.changeColor(color: selectedColor)
+                        print(tempTag.tagColor)
                         print("tag created with name: \(tagName), icon: \(selectedIcon), and color: \(selectedColor)")
+                        modelContext.insert(tempTag)
+                        dismiss()
                     },
                     label: { Text("Create Tag") }
                 )
