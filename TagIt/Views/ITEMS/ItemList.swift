@@ -19,16 +19,10 @@ struct ItemList: View {
         ]
 
     var body: some View {
-        HStack {
-            VStack {
-                ForEach(items) { item in
-                    ItemListItem(item: item)
-                }
-            }
-
-        } detail: {
+        VStack {
             Text("Drag files and folders to add")
         }
+        .frame(minWidth: 300, maxWidth: .infinity, minHeight: 300, maxHeight: .infinity)
     }
 }
 

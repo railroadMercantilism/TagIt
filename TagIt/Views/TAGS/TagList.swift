@@ -37,11 +37,14 @@ struct TagList: View {
             .toolbar {
                 ToolbarItem() {
                     Button(action: {
-                        print("Add button clicked")
+                        showTagCreateView = true
                     }) {
-                        Label("Add Filter", systemImage: "plus")
+                        Label("New Tag", systemImage: "plus")
                     }
                 }
+            }
+            .sheet(isPresented: $showTagCreateView) {
+                TagCreateView()
             }
         }
     }

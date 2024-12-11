@@ -4,15 +4,17 @@
 //
 //  Created by James Barry on 12/8/24.
 //
-/*
+
 import Foundation
 import SwiftData
 
 @Observable
 class ModelData {
-    var Tags: [Tag] = load("TagData.json")
-    var Items: [Item] = load("ItemData.json")
+    //var Tags: [Tag] = load("TagData.json")
+    //var Items: [Item] = load("ItemData.json")
+    var tagIcons: [TagIcon] = load("tagIcons.json")
 }
+
 
 /**
  Loads data stored in JSON files
@@ -64,5 +66,3 @@ func store<T: Encodable>(_ object: T, to filename: String) {
         fatalError("Couldn't save \(filename) to main bundle:\n\(error)")
     }
 }
-
-*/
