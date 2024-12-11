@@ -11,16 +11,18 @@ import SwiftData
 
 struct ItemList: View {
     @Query private var items: [Item]
-    /*
-    var item: [Item] = [
-        Item(itemName: "Work", ),
-        Item(itemName: "Personal", itemColor: "#00FF00", itemIcon: "person.fill"),
-        Item(itemName: "School", itemColor: "#0000FF", itemIcon: "graduationcap.fill"),
-        ]
-     */
+    
+    var sampleItems = [
+        Item(fileURL: "https://www.infogrepper.com/wp-content/uploads/2022/10/image-url-for-testing.png"),
+        Item(fileURL: "/Users/jamesbarry/Documents/Personal/Independent Writing/annotated-Aesthetics essay.docx.pdf"),
+        Item(fileURL: "/Users/jamesbarry/Documents/P4C/Poems Lesson Plan/Giving-Tree-1415722253.jpg")
+    ]
+    
     var body: some View {
         VStack {
-            Text("Drag files and folders to add")
+            ForEach(sampleItems) { item in
+                ItemListItem(item: item)
+            }
         }
         .frame(minWidth: 300, maxWidth: .infinity, minHeight: 300, maxHeight: .infinity)
     }

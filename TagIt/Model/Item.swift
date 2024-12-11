@@ -8,6 +8,7 @@
 import AppKit
 import Foundation
 import SwiftData
+import SwiftUICore
 
 /*
  Because of @Model; This is the Item TABLE. Image each of these variables as a columns in a table in a database.
@@ -20,7 +21,7 @@ final class Item {
     
     var itemName: String
     var tags: [Tag]
-    var fileURL: String
+    var fileURL: String?
 
     
     init(fileURL: String) {
@@ -30,10 +31,34 @@ final class Item {
         self.tags = []
     }
     
+    func convertToURL(fileURL: String) -> URL? {
+        return URL(fileURLWithPath: fileURL)
+    }
+    
     /*
      Possible future implementation: show the fileURL as a URL object and then show file details/preview in the app.
     */
     func addTag(tag: Tag) {
         tags.append(tag)
+    }
+    
+    var image: Image? {
+        guard let filePath = fileURL else {
+            print("fileURL is nil")
+            return nil
+        }
+        
+        print("Looking for file at: \(filePath)")
+        
+        // Check if file exists at the given file path
+        let fileManager = FileManager.default
+        if fileManager.fileExists(atPath: filePath) {
+            if let nsImage = NSImage(contentsOfFile: filePath) {
+                print("Image found, width: \(Int(nsImage.size.width))")
+                return Image(nsImage: nsImage)
+            }
+        }
+        print("File not found at path: \(filePath)")
+        return nil
     }
 }
