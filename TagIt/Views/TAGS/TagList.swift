@@ -14,6 +14,7 @@ struct TagList: View {
     
     //This is a temporary String with dummy data
     @State private var numberOfTags = 2
+    @State private var showTagCreateView = false
 
     var body: some View {
         ScrollView {
@@ -37,11 +38,14 @@ struct TagList: View {
             .toolbar {
                 ToolbarItem() {
                     Button(action: {
-                        numberOfTags += 1
+                        showTagCreateView = true
                     }) {
                         Label("New Tag", systemImage: "plus")
                     }
                 }
+            }
+            .sheet(isPresented: $showTagCreateView) {
+                TagCreateView()
             }
         }
     }

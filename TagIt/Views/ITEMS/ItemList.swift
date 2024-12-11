@@ -10,14 +10,13 @@ import SwiftUI
 import SwiftData
 
 struct ItemList: View {
-    @Query private var items: [Item]
+    //@Query private var items: [Item]
 
     var body: some View {
-        NavigationSplitView {
-
-        } detail: {
+        VStack {
             Text("Drag files and folders to add")
         }
+        .frame(minWidth: 300, maxWidth: .infinity, minHeight: 300, maxHeight: .infinity)
     }
 }
 
